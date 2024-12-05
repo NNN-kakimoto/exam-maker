@@ -25,10 +25,3 @@ export const profileState = atom<Profile>({
     displayName: null,
   },
 });
-
-// const profileSelector = selector<string[]>({
-//   key: 'profileSelector',
-//   get: ({ get }) => {
-//     return get(profileState);
-//   },
-// });
