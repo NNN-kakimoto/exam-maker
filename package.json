@@ -2,6 +2,11 @@
   "name": "exam-maker",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.11.0",
+    "npm": "10.9.0",
+    "pnpm": "9.14.3"
+  },
   "scripts": {
     "dev": "BUILD_ID=$(git rev-parse --short HEAD) next dev",
     "build": "BUILD_ID=$(git rev-parse --short HEAD) next build",

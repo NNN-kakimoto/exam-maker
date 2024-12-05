@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# exam-maker
+
+## What is this
+
+TODO: 非エンジニアでも概要がわかるように書く
+
 
 ## Getting Started
 
-First, run the development server:
+開発サーバーを立ち上げる際は、以下のコマンドを実行してください。
+※ 事前にホストで `pnpm` コマンドのインストールが必要です。node等のバージョンは [package.json](./package.json) の `engines` プロパティを参照してください。 
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm i
+
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) でサイトが立ち上がります。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Liffアプリのテストを行う際は、ngrokでポートを開放する必要があります。以下のコマンドで開放できます。
+※ 事前にホストに `ngrok` コマンドのインストールが必要です。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm ngrok
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+TODO: デプロイ先の選定と仕組みを整えて手順を書く
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## System
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+TODO: システムの概要を書く
 
-## Deploy on Vercel
+## Data structure, datastore
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+TODO: データ保存先と内部の構造を書く
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documents
+
+TODO: API仕様や画面の役割などを書く
