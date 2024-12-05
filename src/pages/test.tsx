@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
+
 import { Profile, profileState } from '@/recoilAtoms/profile';
 
 export const Test: NextPage = () => {

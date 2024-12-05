@@ -1,9 +1,10 @@
-import Head from 'next/head';
-import React, { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/router';
 import { Liff } from '@line/liff';
+import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+
 import { Button } from '@/components/atoms/Button';
 import { profileState } from '@/recoilAtoms/profile';
 

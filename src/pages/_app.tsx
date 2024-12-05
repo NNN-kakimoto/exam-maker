@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import type { AppProps } from 'next/app';
 import { liff, Liff } from '@line/liff';
+import type { AppProps } from 'next/app';
+import { useEffect, useState } from 'react';
 
 import { Layout } from '../components/layout';
 import './globals.css';
