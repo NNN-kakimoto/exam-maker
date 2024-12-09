@@ -1,5 +1,8 @@
+import { PrismaClient } from '@/generated/client';
 import { Question } from '@/types/question';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+const prisma = new PrismaClient();
 
 export default async function handler(
   request: NextApiRequest,
@@ -20,17 +23,33 @@ export default async function handler(
 async function get(request: NextApiRequest, response: NextApiResponse) {
   console.log('GET method');
   console.log(request.query);
+  const question = await prisma.question.findFirst({
+    where: {
+      id: request.query.id as string,
+    },
+    include: {
+      choices: true,
+    },
+  });
+  console.log(question);
+  if (!question) {
+    return response
+      .status(404)
+      .json({ message: '問題が見つかりませんでした。' });
+  }
   return response.json(<Question>{
-    id: request.query.id as string,
-    examId: 'exam_id_1',
-    text: '日本の首都はどこでしょう?',
-    correctAnswerId: 'choice_id_1',
-    answers: [
-      { id: 'choice_id_1', questionId: '1', text: '東京都', isCorrect: true },
-      { id: 'choice_id_2', questionId: '1', text: '大阪府', isCorrect: false },
-      { id: 'choice_id_3', questionId: '1', text: '愛知県', isCorrect: false },
-      { id: 'choice_id_4', questionId: '1', text: '北海道', isCorrect: false },
-    ].sort(() => Math.random() - 0.5),
+    id: question.id,
+    examId: question.examId,
+    text: question.text,
+    correctChoiceId: question.choices.find((choice) => choice.isCorrect)?.id,
+    choices: question.choices
+      .sort(() => Math.random() - 0.5)
+      .map((choice) => ({
+        id: choice.id,
+        questionId: choice.questionId,
+        text: choice.text,
+        isCorrect: choice.isCorrect,
+      })),
   });
 }
 

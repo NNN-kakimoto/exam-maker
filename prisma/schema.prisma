@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Question {
+  id      String   @id
+  examId  String   @map("exam_id")
+  text    String
+  choices Choice[]
+  // created_at DateTime @default(now())
+  // updated_at DateTime @default(now())
+
+  @@map("questions")
+}
+
+model Choice {
+  id         String  @id
+  questionId String  @map("question_id")
+  text       String
+  isCorrect  Boolean @map("is_correct")
+
+  question Question @relation(fields: [questionId], references: [id])
+  // created_at DateTime @default(now())
+  // updated_at DateTime @default(now())
+
+  @@map("choices")
+}
