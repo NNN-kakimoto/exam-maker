@@ -1,6 +1,9 @@
-import { RecoilRoot } from 'recoil';
+import { RecoilEnv, RecoilRoot } from 'recoil';
 import { Dummy } from './dummy';
 import Head from 'next/head';
+
+// 開発時にエラーログが出ないようにする
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

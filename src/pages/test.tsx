@@ -11,7 +11,7 @@ export const Test: NextPage = () => {
       <div>
         <Link href='/'>戻る</Link>
       </div>
-      {profile?.status === 'authenticated' ? (
+      {profile.status === 'authenticated' ? (
         <>
           <div>name: {profile.displayName ?? ''}</div>
           <div>message: {profile.statusMessage ?? ''}</div>
