@@ -114,17 +114,67 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  lineUid: 'lineUid',
+  displayName: 'displayName',
+  pictureUrl: 'pictureUrl',
+  statusMessage: 'statusMessage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExamScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  title: 'title',
+  isQuestionOrderRandom: 'isQuestionOrderRandom',
+  isChoicesOrderRandom: 'isChoicesOrderRandom',
+  passingScore: 'passingScore',
+  questionCount: 'questionCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.QuestionScalarFieldEnum = {
   id: 'id',
   examId: 'examId',
-  text: 'text'
+  text: 'text',
+  infoText: 'infoText',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ChoiceScalarFieldEnum = {
   id: 'id',
   questionId: 'questionId',
   text: 'text',
-  isCorrect: 'isCorrect'
+  isCorrect: 'isCorrect',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserExamJoinScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  examId: 'examId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserExamAnswerScalarFieldEnum = {
+  id: 'id',
+  userExamJoinId: 'userExamJoinId',
+  isPassed: 'isPassed',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserExamAnswerChoiceScalarFieldEnum = {
+  id: 'id',
+  userExamAnswerId: 'userExamAnswerId',
+  questionId: 'questionId',
+  choiceId: 'choiceId',
+  isCorrect: 'isCorrect',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -132,10 +182,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
+  User: 'User',
+  Exam: 'Exam',
   Question: 'Question',
-  Choice: 'Choice'
+  Choice: 'Choice',
+  UserExamJoin: 'UserExamJoin',
+  UserExamAnswer: 'UserExamAnswer',
+  UserExamAnswerChoice: 'UserExamAnswerChoice'
 };
 
 /**
