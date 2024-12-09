@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id
+  lineUid       String   @unique @map("line_uid")
+  displayName   String   @map("display_name")
+  pictureUrl    String?  @map("picture_url")
+  statusMessage String?  @map("status_message")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @map("updated_at")
+
+  userExamJoins UserExamJoin[]
+
+  @@map("users")
+}
+
+model Exam {
+  id                    String   @id
+  code                  String   @unique
+  title                 String   @map("title")
+  isQuestionOrderRandom Boolean  @default(true) @map("is_question_order_random")
+  isChoicesOrderRandom  Boolean  @default(true) @map("is_choices_order_random")
+  passingScore          Int      @map("passing_score")
+  questionCount         Int      @map("question_count")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @default(now()) @map("updated_at")
+
+  questions     Question[]
+  userExamJoins UserExamJoin[]
+
+  @@index([code])
+  @@map("exams")
+}
+
+model Question {
+  id        String   @id
+  examId    String   @map("exam_id")
+  text      String
+  choices   Choice[]
+  infoText  String?  @map("info_text")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  exam                  Exam                   @relation(fields: [examId], references: [id])
+  userExamAnswerChoices UserExamAnswerChoice[]
+
+  @@map("questions")
+}
+
+model Choice {
+  id         String   @id
+  questionId String   @map("question_id")
+  text       String
+  isCorrect  Boolean  @map("is_correct")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @map("updated_at")
+
+  question              Question               @relation(fields: [questionId], references: [id])
+  userExamAnswerChoices UserExamAnswerChoice[]
+
+  @@map("choices")
+}
+
+model UserExamJoin {
+  id        String   @id
+  userId    String   @map("user_id")
+  examId    String   @map("exam_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user            User             @relation(fields: [userId], references: [id])
+  exam            Exam             @relation(fields: [examId], references: [id])
+  userExamAnswers UserExamAnswer[]
+
+  @@map("user_exam_joins")
+}
+
+model UserExamAnswer {
+  id             String   @id
+  userExamJoinId String   @map("user_exam_join_id")
+  isPassed       Boolean  @map("is_passed")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  userExamJoin          UserExamJoin           @relation(fields: [userExamJoinId], references: [id])
+  userExamAnswerChoices UserExamAnswerChoice[]
+
+  @@map("user_exam_answers")
+}
+
+model UserExamAnswerChoice {
+  id               String   @id
+  userExamAnswerId String   @map("user_exam_answer_id")
+  questionId       String   @map("question_id")
+  choiceId         String   @map("choice_id")
+  isCorrect        Boolean  @map("is_correct")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  userExamAnswer UserExamAnswer @relation(fields: [userExamAnswerId], references: [id])
+  question       Question       @relation(fields: [questionId], references: [id])
+  choice         Choice         @relation(fields: [choiceId], references: [id])
+
+  @@map("user_exam_answer_choices")
+}

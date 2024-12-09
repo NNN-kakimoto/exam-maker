@@ -30,13 +30,13 @@ export const QuestionPage: NextPage = () => {
         <>
           <h2 className='text-lg'>{question.text}</h2>
           <ul className='pl-2 text-sm'>
-            {question.answers?.map((answer) => (
-              <li key={answer.id} className='w-full hover:bg-slate-200'>
+            {question.choices?.map((choice) => (
+              <li key={choice.id} className='w-full hover:bg-slate-200'>
                 <label className='block'>
-                  <input type='radio' name='answer' value={answer.id} />
+                  <input type='radio' name='choice' value={choice.id} />
                   <span>
-                    {answer.text}
-                    {question.correctAnswerId === answer.id && ' (correct)'}
+                    {choice.text}
+                    {question.correctChoiceId === choice.id && ' (correct)'}
                   </span>
                 </label>
               </li>

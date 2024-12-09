@@ -10,21 +10,26 @@
   "scripts": {
     "dev": "BUILD_ID=$(git rev-parse --short HEAD) next dev",
     "build": "BUILD_ID=$(git rev-parse --short HEAD) next build",
-    "start": "next start",
+    "start": "BUILD_ID=$(git rev-parse --short HEAD) next start",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "ngrok": "ngrok http 3000 --domain=mustang-gorgeous-jay.ngrok-free.app"
+    "ngrok": "ngrok http 3000 --domain=mustang-gorgeous-jay.ngrok-free.app",
+    "prisma:migrate": "prisma db push && prisma generate",
+    "prisma:seed": "tsx prisma/seed.ts",
+    "prisma:format": "prisma format"
   },
   "dependencies": {
     "@liff/get-profile": "^2.25.0",
     "@line/liff": "^2.25.0",
+    "@prisma/client": "6.0.1",
     "next": "15.0.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "ulid": "^2.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.1",
     "eslint": "^8",
@@ -35,7 +40,9 @@
     "eslint-plugin-prettier": "^5.2.1",
     "postcss": "^8",
     "prettier": "^3.4.1",
+    "prisma": "^6.0.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
   }
 }
