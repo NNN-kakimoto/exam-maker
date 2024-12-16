@@ -1,0 +1,4 @@
+dbs:
+  - path: ./prisma/sqlite.db
+    replicas:
+      - url: gcs://litestream_sqlite_takumon_maker/replicas

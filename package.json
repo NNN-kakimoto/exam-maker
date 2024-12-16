@@ -16,7 +16,8 @@
     "ngrok": "ngrok http 3000 --domain=mustang-gorgeous-jay.ngrok-free.app",
     "prisma:migrate": "prisma db push && prisma generate",
     "prisma:seed": "tsx prisma/seed.ts",
-    "prisma:format": "prisma format"
+    "prisma:format": "prisma format",
+    "docker:build": "docker build -t exam-maker . --platform linux/amd64"
   },
   "dependencies": {
     "@liff/get-profile": "^2.25.0",
