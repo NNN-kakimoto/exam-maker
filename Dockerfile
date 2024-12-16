@@ -29,4 +29,6 @@ COPY --from=builder /app/litestream.yaml litestream.yaml
 COPY --from=builder /usr/local/bin/litestream /usr/local/bin/litestream
 COPY --from=builder /app/entrypoint.sh entrypoint.sh
 
+EXPOSE 3000
+ENV PORT 3000
 CMD [ "./entrypoint.sh" ]
