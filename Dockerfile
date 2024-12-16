@@ -24,7 +24,7 @@ COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/package.json package.json
 COPY --from=builder /app/package-lock.json package-lock.json
 COPY --from=builder /app/pnpm-lock.yaml pnpm-lock.yaml
-COPY --from=builder /app/prisma/sqlite.db prisma/sqlite.db
+RUN touch prisma/sqlite.db
 COPY --from=builder /app/litestream.yaml litestream.yaml
 COPY --from=builder /usr/local/bin/litestream /usr/local/bin/litestream
 COPY --from=builder /app/entrypoint.sh entrypoint.sh
