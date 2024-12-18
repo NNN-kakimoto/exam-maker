@@ -11,6 +11,7 @@ COPY package.json package-lock.json pnpm-lock.yaml ./
 ## pnpm コマンドを使えるようにしたい
 RUN npm install
 COPY . ./
+RUN npm run prisma:migrate
 RUN npm run build
 
 FROM node:22-alpine AS runner
