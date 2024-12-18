@@ -2,7 +2,7 @@ FROM node:22-alpine AS builder
 
 RUN apk add --no-cache libc6-compat
 RUN apk add sqlite-dev
-ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-arm64.tar.gz /tmp/litestream.tar.gz
+ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz /tmp/litestream.tar.gz
 RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED 1

@@ -23,4 +23,4 @@ fi
 
 # メインプロセスに、litestreamによるレプリケーション、
 # サブプロセスに Next.js アプリケーションを走らせる
-exec litestream replicate -exec "node_modules/.bin/next start" -config ./litestream.yaml
+litestream replicate -exec "node_modules/.bin/next start" -config ./litestream.yaml
