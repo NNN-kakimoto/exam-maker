@@ -1,4 +1,20 @@
 steps:
+  - name: bash
+    env:
+      - PROJECT_ID=$PROJECT_ID
+      - REVISION_ID=$REVISION_ID
+      - _LIFF_ID=$LIFF_ID
+      - _DATABASE_URL=$DATABASE_URL
+    script: >
+      #!/usr/bin/env bash
+
+      echo BUILD_ID=$(echo $REVISION_ID | cut -c 1-7) >> .env
+
+      echo LIFF_ID=$LIFF_ID >> .env
+
+      echo DATABASE_URL=$DATABASE_URL >> .env
+
+    id: Create environment settings
   - name: gcr.io/cloud-builders/docker
     args:
       - '-c'
