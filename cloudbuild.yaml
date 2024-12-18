@@ -3,8 +3,8 @@ steps:
     env:
       - PROJECT_ID=$PROJECT_ID
       - REVISION_ID=$REVISION_ID
-      - _LIFF_ID=$LIFF_ID
-      - _DATABASE_URL=$DATABASE_URL
+      - LIFF_ID=$_LIFF_ID
+      - DATABASE_URL=$_DATABASE_URL
     script: >
       #!/usr/bin/env bash
 
