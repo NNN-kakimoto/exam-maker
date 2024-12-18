@@ -12,7 +12,7 @@ steps:
 
       echo LIFF_ID=$LIFF_ID >> .env
 
-      echo DATABASE_URL=$DATABASE_URL >> .env
+      echo DATABASE_URL="$DATABASE_URL" >> .env
 
     id: Create environment settings
   - name: gcr.io/cloud-builders/docker
