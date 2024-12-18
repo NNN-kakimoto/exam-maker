@@ -43,9 +43,22 @@ steps:
       - '--quiet'
     id: 'CloudRun: Deploy'
     entrypoint: gcloud
+  - name: asia-docker.pkg.dev/gcr-cleaner/gcr-cleaner/gcr-cleaner-cli:latest
+    env:
+      - PROJECT_ID=$PROJECT_ID
+    args:
+      - -repo
+      # 3つのリポジトリをカンマ区切りで指定, --recursive オプションによりfunctionsのイメージも一掃できる
+      - "asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$PROJECT_ID"
+      - -keep
+      - "5"
+      - -tag-filter-any
+      - ".*"
+      - --recursive
+    id: 'Artifact Registry: Delete container images'
 images:
   - >-
-    asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/takumon-maker:latest
+    asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$PROJECT_ID:latest
 options:
   logging: 'CLOUD_LOGGING_ONLY'
 substitutions:
