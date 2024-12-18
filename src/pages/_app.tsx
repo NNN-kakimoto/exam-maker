@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   // Execute liff.init() when the app is initialized
   useEffect(() => {
     console.log('start liff.init()...');
+    console.log('env', process.env);
     liff
       .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID ?? '' })
       .then(() => {
