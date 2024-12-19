@@ -63,10 +63,9 @@ steps:
       - PROJECT_ID=$PROJECT_ID
     args:
       - -repo
-      # 3つのリポジトリをカンマ区切りで指定, --recursive オプションによりfunctionsのイメージも一掃できる
       - "asia-northeast1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$PROJECT_ID"
       - -keep
-      - "5"
+      - "2"
       - -tag-filter-any
       - ".*"
       - --recursive
