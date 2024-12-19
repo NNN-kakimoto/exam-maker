@@ -21,6 +21,7 @@ else
   mv ./prisma/sqlite.db.bk ./prisma/sqlite.db
 fi
 
-# メインプロセスに、litestreamによるレプリケーション、
-# サブプロセスに Next.js アプリケーションを走らせる
-litestream replicate -exec "npm run prisma:migrate && npm run prisma:seed" -config ./litestream.yaml
+npm run prisma:migrate && npm run prisma:seed
+
+# litestreamによるレプリケーション
+litestream replicate -config ./litestream.yaml
