@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "BUILD_ID=$(git rev-parse --short HEAD) next dev",
-    "build": "BUILD_ID=$(git rev-parse --short HEAD) next build",
-    "start": "BUILD_ID=$(git rev-parse --short HEAD) next start",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "ngrok": "ngrok http 3000 --domain=mustang-gorgeous-jay.ngrok-free.app",
