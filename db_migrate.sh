@@ -24,4 +24,4 @@ fi
 npm run prisma:migrate && npm run prisma:seed
 
 # litestreamによるレプリケーション
-litestream replicate -config ./litestream.yaml
+timeout -sKILL 15 litestream replicate -config ./litestream.yaml
